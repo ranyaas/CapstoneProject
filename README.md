@@ -1,19 +1,59 @@
-# CapstoneProject: Credit Card Fraud Detection
-With more consumers shifting to alternative forms of payment beyond cash, the adoption of the use of credit cards continues to increase at a rapid pace. In Canada alone, there are “76.2 million Visa and MasterCard cards in circulation” (Canadian Bankers Association, 2023). Though most credit cards come with their advantages ranging from cash back and rewards to easier and faster transactions, they too possess significant risk for consumers. Such risk is the increased exposure to credit card fraud. By definition, credit card fraud occurs when either a person steals or uses without permission a person's credit card or credit card information (Government of Canada, 2023). In fact, the Chartered Professional Accounts of Canada (CPA) found that 3 in 5 individuals between the ages 18-34 years have reported being a victim of at least one form of financial fraud (Chartered Professional Accountants Canada, 2023). Knowing this, especially at a time when data is easily and widely accessible and exchanged, how can financial institutions utilize such information to its optimum to create models that are able to detect and minimize the risk of credit card fraud for their customers? Using a credit card fraud dataset containing 1,296,675 observations and 23 features, published by Shenoy (2019) on Kaggle, this project strives to address and explore the occurrence of fraud while providing a sufficient model to classify whether a transaction is fraudulent or not in Python. Moreover, this project will follow similarly to Afriyie et al. (2023) as the authors utilize the same data set and similar approaches. Some of the key research questions under consideration include where and how credit card frauds happen more frequently, what sampling technique works best for creating a fraud detection model, and what are the best features that can better predict credit card fraud. With respect to the nature of the subject, classification will be the theme of this task, as the key objective is primarily to predict the correct label for fraud as accurately as possible given the training data. For context, classification is a supervised machine learning approach in which the model attempts to predict the appropriate label for a given set of data and is trained using the training set, where it is then evaluated on the testing set (Keita, 2022). Some of these approaches include logistic regression, decision tree, and k nearest neighbour (KNN) and these will be the three algorithms used and compared against using Python’s sklearn package to identify the appropriate model. Moreover, techniques for balancing the dataset and feature selection will be considered.
+# Credit Card Fraud Detection
+
+![Chartered Professional Accountants of Canada. (2023, February 15). Unlikely targets: More young Canadians report being a victim of financial fraud than older Canadians: CPA Canada survey reveals. Cpacanada.ca.](https://www.cpacanada.ca/-/media/site/operational/mr-media-releases/images/2023-02-15-mr.jpg)
+> Image Source: Chartered Professional Accountants of Canada. (2023, February 15). Unlikely targets: More young Canadians report being a victim of financial fraud than older Canadians: CPA Canada survey reveals. Cpacanada.ca. https://www.cpacanada.ca/en/the-cpa-profession/about-cpa-canada/media-centre/2023/february/cpa-canada-fraud-survey-2023 
+
+## Project Overview
+
+Credit card fraud, an event where an individual uses a stolen credit card or information to make unauthorized purchases (Rafter, 2017) is an ever increasing problem that can happen to anyone at any point in time as we progress towards a technologically advanced society. With roughly 76.2 million Visa and MasterCard credit cards in circulation (Canadian Bankers Association, 2023) and its number continuing to increase, this project investigates and addresses the occurrence of fraudulent transactions using a highly imbalanced dataset while comparing different classification models along with their performances in Python. Some of the research questions under consideration include what resampling technique is more suitable for creating the fraud detection model, what are the best features that better predict fraudulent transactions, and whether the classification models perform better with or without outliers present. As for the classification algorithms, the project will compare three supervised models, namely logistic regression, decision tree, and k nearest neighbor using Python’s Sklearn package.
+
+### Motivation for Project
+
+Though there have been a number of models proposed to better detect credit card fraud, fraudsters are developing and improving their ways to retrieve people’s credit card information. As a matter of fact, as more models become outdated, the increase in opportunities there are for fraudsters to understand the models and eventually making it easier for them to commit fraud. Therefore, models need to be updated routinely to adapt to the different forms of fraud. 
+
+The research questions that will be addressed in this project are as follows and may be subjected to change: 
+
+  1. Knowing that there does exist a bias towards non-fraudulent transactions, what sampling technique will perform better for creating a more accurate fraud detection model? 
+  2. In relation to the first research question, will the models perform better when outliers are present and transformed, or when no outliers exist?
+  3. What are the essential features that aid in classifying and differentiating what is a legitimate transaction or a fraudulent transaction?
+
+### Challenges
+In most credit card datasets that are publicly available, including the dataset used for this project, there exists critical problems when creating an appropriate fraud detection model. These include: 
+  - **_Class imbalance_**: Most observations in the data are classified as legitimate transactions which consist of the majority class while the remaining few are fraudulent transactions, where that makes up the minority class. The problem that will arise from this are inaccurate classification models that are biased towards the majority class if no resampling techniques are implemented.
+  - **_Skewness of data_**: A significant number of attributes in the dataset are very skewed, indicating the presence of outliers that can affect model performance and statistical analysis 
+  
+With this in mind, the proposed steps showcases my overall methodology in which it will aim to overcome these obstacles. 
+
+## Methodology 
+### Dataset 
+The dataset used is a [Credit Card Transactions Fraud Detection Dataset](https://www.kaggle.com/datasets/kartik2112/fraud-detection) from Kaggle.
 
 
+### Summary of Steps 
+Before reading in the data into the machine learning algorithms for modelling, a number of steps such as data preparation/cleaning and data preprocessing are performed. Below lists and summarizes some of the important steps that will be taken:  
+  - _Data cleaning / Feature engineering_: This includes the conversion to the appropriate data types of variables that are incorrectly assigned to the wrong data type, identifying missing values and dealing with outliers, creating additional features from existing variables, and dropping redundant variables that are not necessary for analysis.
+  - _Exploratory Data Analysis (EDA)_: Performing univariate analysis by examining the distributions of variables in the form of plots (e.g. bar and pie charts, box plots), performing bivariate analysis with the target variable “is_fraud” to examine the occurrence of fraud through different predictor variables (e.g. fraud by gender, fraud by age, etc.). After obtaining a better understanding of the data, the data cleaning stage will be returned to as further changes and transformations may be needed to proceed to the next stages.
+  - _Data preprocessing_: In this stage, categorical attributes will be converted into a numerical format through one-hot encoding to create ease for the machine learning algorithms to process the data. Furthermore, I will scale and transform the dataset using RobustScaler, which relies on the interquartile range rather than the median for scaling the numeric attributes, in order to handle outliers as it will negatively influence my results. Next, I will create a duplicate of the dataset where the outliers will be dropped based on whether the observations are outside of the 25th or 75th quantile range. Moreover, the numeric features will then be normalized using MinMax scalar in order to scale the values within the 0 to 1 range. This is done in order to identify whether the models perform better with the outliers transformed or without outliers present when applying resampling techniques along with the three machine learning algorithms. Then, the data will be split using 70% of the observations for training and the remaining 30% for testing. Resampling techniques that will be examined are undersampling, oversampling, and SMOTE. In order to prevent data leakage, pipelines will be created containing the resampling technique and the machine algorithm used. For feature selection, this project will use a wrapper algorithm, known as recursive feature elimination (RFE), to create a subset of the optimum features in the dataset using the training data. This step will be done after examining the baseline models.
+  - _Data modelling_: To evaluate the models, I will be cross validating the training data using stratified k-fold as I want to maintain the class distribution for each fold. A list of parameters of the machine learning algorithms will be selected in order to perform a grid search to identify the appropriate parameter to use for modelling. Essentially, I will use GridSearchCV with the pipeline as my estimator to select the best model for detecting fraud, and this will be fitted with the training data.
+  - _Performance_: This stage I will be evaluating the test set on the models by using performance metrics such as accuracy, recall, precision, and area under the curve (AUC) value. Note, more metrics will be considered as I progress through the project.
+
+### Tools: Packages Used 
+- [Pandas](https://pandas.pydata.org/about/index.html) : Package mainly used for data analysis
+- [NumPy](https://numpy.org/doc/stable/user/whatisnumpy.html) : Package to compute mathematical operations for arrays
+- [Scikit-Learn (Sklearn)](https://scikit-learn.org/stable/) : Package for machine learning
+- [imblearn](https://imbalanced-learn.org/stable/) : Package offering tools for balancing datasets, also part of Scikit-Learn package
+- [matplotlib](https://matplotlib.org/) : Data visualization package
+- [Seaborn](https://seaborn.pydata.org/#:~:text=Seaborn%20is%20a%20Python%20data,attractive%20and%20informative%20statistical%20graphics.) : Based on matplotlib, another data visualization package
+
+## What is in this Repository 
+In this repository, an abstract is uploaded providing a general summary and motivation for the project. Following that, a literature review and methodology is also included to demonstrate and elaborate on the previous work that has been done in this topic as well as how I will approach the project, which is similarly explained as earlier. Lastly, my initial code and analysis is posted as a Jupyter Notebook and in PDF format that contains the majority of the stages that have been performed. 
+
+***Note, this is a continuous process and will be subjected to change routinely when necessary***
 
 
-References
-
-Afriyie, J. K., Tawiah, K., Pels, W. A., Addai-Henne, S., Dwamena, H. A., Owiredu, E. O., ... & Eshun, J. (2023). A supervised machine learning algorithm for detecting and predicting fraud in credit card transactions. Decision Analytics Journal, 6, 100163.
+## References
 
 Canadian Bankers Association . (2023, March 31). Focus: Credit Cards: Statistics and Facts. Cba.ca. https://cba.ca/credit-cards
 
-Chartered Professional Accountants of Canada. (2023, February 15). Unlikely targets: More young Canadians report being a victim of financial fraud than older Canadians: CPA Canada survey reveals. Cpacanada.ca. 
+Rafter, D. (2017, September 14). What Is Credit Card Fraud? LifeLock by Norton. https://lifelock.norton.com/learn/fraud/what-is-credit-card-fraud 
 
-Government of Canada. (2023). Credit card fraud . Canada.ca. https://www.canada.ca/en/financial-consumer-agency/services/credit-fraud.html 
-
-Keita, Z. (2022, September 21). Classification in Machine Learning: An Introduction. Datacamp.com; DataCamp. https://www.datacamp.com/blog/classification-machine-learning 
-
-Shenoy, K. (2019). Credit Card Transactions Fraud Detection Dataset. Kaggle.com. https://www.kaggle.com/datasets/kartik2112/fraud-detection
