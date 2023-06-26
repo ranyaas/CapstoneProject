@@ -48,7 +48,7 @@ Before reading in the data into the machine learning algorithms for modelling, a
 ## What is in this Repository 
 In this repository, an abstract is uploaded providing a general summary and motivation for the project. Following that, a literature review and methodology is also included to demonstrate and elaborate on the previous work that has been done in this topic as well as how I will approach the project, which is similarly explained as earlier. Lastly, my initial code and analysis is posted as a Jupyter Notebook and in PDF format that contains the majority of the stages that have been performed. 
 
-***Note, this is a continuous process and will be subjected to change routinely when necessary***
+***Note, this is a continuous process and will be subjected to change routinely when necessary.***
 
 
 ## References
