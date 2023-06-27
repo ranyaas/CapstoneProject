@@ -46,10 +46,10 @@ Before reading in the data into the machine learning algorithms for modelling, a
 - [Seaborn](https://seaborn.pydata.org/#:~:text=Seaborn%20is%20a%20Python%20data,attractive%20and%20informative%20statistical%20graphics.) : Based on matplotlib, another data visualization package
 
 ## What is in this Repository 
-In this repository, an abstract is uploaded providing a general summary and motivation for the project. Following that, a literature review and methodology is also included to demonstrate and elaborate on the previous work that has been done in this topic as well as how I will approach the project, which is similarly explained as earlier. Lastly, my initial code and analysis is posted as a Jupyter Notebook and in PDF format that contains the majority of the stages that have been performed. 
+In this repository, a PDF document containing my abstract, literature review and methodology is uploaded which contains a general summary and motivation of the project, a discussion on the previous work that has been done on this topic and my approaches, which is similarly explained as earlier. As well, my initial code and analysis is posted as a Jupyter Notebook and in PDF format that contains the majority of the stages that have been performed. 
 
 ***Note, this is a continuous process and will be subjected to change routinely when necessary.***
-
+ 
 
 ## References
 
